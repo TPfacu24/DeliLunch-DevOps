@@ -9,7 +9,7 @@ on:
 jobs:
   build-and-test:
     runs-on: ubuntu-latest
-
+    
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
@@ -28,6 +28,6 @@ jobs:
 
       - name: Install dependencies (Frontend)
         run: cd frontend && npm install
-
+        
       - name: Build frontend
         run: cd frontend && npm run build
