@@ -3,7 +3,7 @@ FROM node:18-alpine AS build
 
 WORKDIR /app
 
-# Copiamos todo el proyecto al contexto de construcción del stage 1
+# Copiamos los archivos del proyecto
 COPY . .
 
 # Instalamos las dependencias
@@ -14,9 +14,11 @@ FROM node:18-alpine
 
 WORKDIR /app
 
-# Copiamos solo los archivos necesarios del stage 1 al stage 2
+# Copiamos solo lo necesario desde el build stage
 COPY --from=build /app ./
 
-EXPOSE 4000
+# Render requiere que la app escuche el puerto de la variable PORT
+EXPOSE 3000
 
+# Iniciamos el servidor
 CMD ["node", "server.js"]
